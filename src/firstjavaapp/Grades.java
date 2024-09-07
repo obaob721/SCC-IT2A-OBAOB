@@ -28,6 +28,6 @@ public class Grades {
      ave =sum/4;
      System.out.println("\nTotal Marks: "+sum);     
      System.out.println(String.format("Average: %.2f",ave));
-    }
+   }
    
-    }
+}

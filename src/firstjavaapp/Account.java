@@ -1,66 +1,86 @@
 
 package firstjavaapp;
 
+import java.util.Scanner;
+
 public class Account {
-    String firstname, lastname, email, username, password;
-    int pid;
-
-    public void addAccount(int id, String fn, String ln,String eml,String un,String pw){
-    this.pid = id;
-    this.firstname = fn;
-    this.lastname = ln;
-    this.email = eml;
-    this.username = un;
-    this.password = pw;
-    }
-    
-    public void viewAccount(){
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        Accounts[] ac = new Accounts[100];
         
-        System.out.printf("%-10d %-10s %-10s %-10s %-10s %-10s\n",
-                this.pid, this.firstname,this.lastname,this.email,this.username,this.password );
-    }
-  public static boolean isPasswordValid(String pw) {
-        if (pw.length() < 8){
-            System.out.println("Password must be at least 8 characters long.");
-            return false;
+        int nump, i;
+        System.out.print("Enter no. of Accounts: ");
+        nump = sc.nextInt();
+        
+        for(i = 0; i < nump; i++) {
+            System.out.println("Enter Details of Account " + (i + 1) + ": ");
+            
+            int id;
+            boolean sameID;
+            do {
+                sameID = false;    
+                System.out.print("Id: ");
+                id = sc.nextInt();
+                int x;
+                for(x = 0; x < i; x++) {
+                    if(ac[x].pid == id) {
+                        System.out.println("ID already exists!");
+                        sameID = true;
+                        break;
+                    }
+                }
+            } while(sameID);
+            
+            String fn, ln, eml, un, pw;
+            boolean sameUsername, sameEmail;
+            
+            System.out.print("Firstname: ");
+            fn = sc.next();
+            
+            System.out.print("Lastname: ");
+            ln = sc.next();
+            
+            do {
+                sameEmail = false;
+                System.out.print("Email: ");
+                eml = sc.next();
+                int x;
+                for(x = 0; x < i; x++) {
+                    if(ac[x].email.equals(eml)) {
+                        System.out.println("Email already exists!");
+                        sameEmail = true;
+                        break;
+                    }
+                }
+            } while(sameEmail);
+            
+            do {
+                sameUsername = false;
+                System.out.print("Username: ");
+                un = sc.next();
+                int x;
+                for(x = 0; x < i; x++) {
+                    if(ac[x].username.equals(un)) {
+                        System.out.println("Username already exists!");
+                        sameUsername = true;
+                        break;
+                    }
+                }
+            } while(sameUsername);
+        do {
+                System.out.print("Password: ");
+                pw = sc.next();
+        }while (!Accounts.isPasswordValid(pw));
+            
+            ac[i] = new Accounts();
+            ac[i].addAccounts(id, fn, ln, eml, un, pw);
+        }
+        
+        for(i = 0; i < nump; i++) {
+        ac[i].viewAccounts();   
+
         }
 
-        boolean hasUpperCase = false;
-        boolean hasLowerCase = false;
-        boolean hasNumber = false;
-        boolean hasSpecialChar = false;
-
-        String specialCharacters = "!@#$%^&*(),.?\":{}|<>_";
-        for (char ch : pw.toCharArray()) {
-            if (ch >= 'A' && ch <= 'Z') hasUpperCase = true;
-            if (ch >= 'a' && ch <= 'z') hasLowerCase = true;
-            if (ch >= '0' && ch <= '9') hasNumber = true;
-            if (specialCharacters.indexOf(ch) >= 0) hasSpecialChar = true;
-        }
-
-        if (!hasUpperCase) {
-            System.out.println("\nPassword must contain at least one uppercase letter.");
-            return false;
-        }
-        if (!hasLowerCase) {
-            System.out.println("\nPassword must contain at least one lowercase letter.");
-            return false;
-        }
-        if (!hasSpecialChar) {
-            System.out.println("\nPassword must contain at least one special character.");
-            return false;
-        }
-        if (!hasNumber) {
-            System.out.println("\nPassword must contain at least one number.");
-            return false;
-        }
-        if (pw.toLowerCase().contains("admin") || 
-            pw.toLowerCase().contains("password") || 
-            pw.contains("1234")) {
-            System.out.println("Password must not contain common words like 'admin', 'password', or '1234'.");
-            return false;
-        }
-        return true;
-    }
+    } 
 }
 
