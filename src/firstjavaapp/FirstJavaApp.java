@@ -2,8 +2,8 @@ package firstjavaapp;
 
 public class FirstJavaApp {
     public static void main(String[] args) {
-        //Grade grd = new Grade();
-        //grd.getGrade();
+        Grade grd = new Grade();
+        grd.getGrade();
         
         //Product pr = new Product();
         //pr.addProducts(10011, "Soap", 20, 10);
@@ -16,7 +16,7 @@ public class FirstJavaApp {
         //Product product = new Product();
         //product.manageProducts(); 
         
-          Account.main(args);       
+         // Account.main(args);       
   }    
     
 }

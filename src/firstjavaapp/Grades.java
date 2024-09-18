@@ -1,33 +1,22 @@
 package firstjavaapp;
 
-import java.util.Scanner;
+public class Grades { int id; String name; double p, m, pf, f;
 
-public class Grades {
-    public void getGrade(){
-        Scanner s = new Scanner(System.in);
-        
-       String name; 
-       int math, sc, eng, com;
-       float ave, sum; 
-     System.out.print("Enter your fullname: ");
-     name = s.nextLine();
-     System.out.println("Enter Marks In");
-     System.out.print("Math: ");
-     math = s.nextInt();
-     System.out.print("Science: ");
-     sc = s.nextInt();
-     System.out.print("English: ");
-     eng = s.nextInt();
-     System.out.print("Computer: ");
-     com= s.nextInt();
-     
-     System.out.println("\nGrade Detail: "); 
-     System.out.print("Name: "+name);
-     
-     sum=math+sc+eng+com;
-     ave =sum/4;
-     System.out.println("\nTotal Marks: "+sum);     
-     System.out.println(String.format("Average: %.2f",ave));
-   }
-   
+public void addGrades(int sid, String sname, double sp, double sm, double spf, double sf){
+    this.id = sid;
+    this.name = sname;
+    this.p = sp;
+    this.m = sm;
+    this.pf = spf;
+    this.f = sf;
+}
+
+public void viewGrades(){
+    double average = (this.p + this.m + this.pf + this.f)/4;
+    String remarks = (average > 3.0) ? "Failed" : "Passed";
+
+    System.out.printf("%-10d %-10s %-10.2f %-10.2f %-10.2f %-10.2f %-10.2f %-10s\n",
+            this.id, this.name, this.p, this.m, this.pf, this.f, average, remarks);
+
+}
 }
