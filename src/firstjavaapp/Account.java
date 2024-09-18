@@ -4,12 +4,49 @@ package firstjavaapp;
 import java.util.Scanner;
 
 public class Account {
+    
+    public static void editAccounts(Accounts[] ats, int id, int size){
+    Scanner sc = new Scanner(System.in);
+     for(int i = 0; i < size; i++){
+       if(id == ats[i].pid){
+          System.out.println("Enter new password: "+ats[i].pid+":");
+            System.out.print("Password: ");
+            String npr = sc.next();
+            
+            ats[i].password = npr;
+            
+      }
+  }
+
+}
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         Accounts[] ac = new Accounts[100];
         
-        int nump, i;
-        System.out.print("Enter no. of Accounts: ");
+        int nump = 0, i, res;
+        
+        do{
+    System.out.println("Accounts Demo App");
+    System.out.println("-------------------------------------");
+    System.out.println("Actions:");
+    System.out.println("1. Add Accounts");
+    System.out.println("2. View Accounts");
+    System.out.println("3. Edit Accounts");
+    System.out.println("4. Delete Accounts");
+    System.out.println("5. Exit");
+    System.out.println("------------------------------------");
+
+    System.out.print("Select an Option: ");
+    int option = sc.nextInt();
+
+    while(option > 5){
+        System.out.print("Invalid Selection, Try Again: ");
+        option = sc.nextInt();
+    }
+     
+    switch(option){
+        case 1:
+            System.out.print("Enter no. of Accounts: ");
         nump = sc.nextInt();
         
         for(i = 0; i < nump; i++) {
@@ -75,11 +112,28 @@ public class Account {
             ac[i] = new Accounts();
             ac[i].addAccounts(id, fn, ln, eml, un, pw);
         }
-        
-        for(i = 0; i < nump; i++) {
-        ac[i].viewAccounts();   
+        break;
+        case 2:
+            for(i = 0; i < nump; i++) {
+            ac[i].viewAccounts(); 
+            }
+        break;
+        case 3:
+        System.out.print("Enter id to update: ");
+            int ids = sc.nextInt();
+            editAccounts(ac, ids, nump);
+        break;
+         }
+         
+    
+        System.out.print("Do you want to continue ?  (1 / 0):  ");
+        res =  sc.nextInt();
 
-        }
+    }while(res != 0 );
+        
+        
+
+        
 
     } 
 }

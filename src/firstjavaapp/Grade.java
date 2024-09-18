@@ -11,8 +11,17 @@ public class Grade {
           System.out.println("Enter new grades of student "+grs[i].id+":");
             System.out.print("Prelim: ");
             double npr = sc.nextDouble();
+            System.out.print("Midterm: ");
+            double mmd = sc.nextDouble();
+            System.out.print("Prefinal: ");
+            double ppf = sc.nextDouble();
+            System.out.print("Final: ");
+            double ffn = sc.nextDouble();
+            
             grs[i].p = npr;
-
+            grs[i].m = mmd;
+            grs[i].pf = ppf;
+            grs[i].f = ffn;
       }
   }
 
@@ -73,7 +82,7 @@ public void getGrade(){
              }
         break;
         case 3:
-            System.out.println("Enter id to update: ");
+            System.out.print("Enter id to update: ");
             int ids = sc.nextInt();
             editGrades(gr, ids, nums);
         break;

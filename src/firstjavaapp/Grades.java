@@ -1,6 +1,9 @@
 package firstjavaapp;
 
-public class Grades { int id; String name; double p, m, pf, f;
+public class Grades{
+   int id;
+   String name;
+   double p,m,pf,f;
 
 public void addGrades(int sid, String sname, double sp, double sm, double spf, double sf){
     this.id = sid;
